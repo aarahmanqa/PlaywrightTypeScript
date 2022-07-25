@@ -27,14 +27,9 @@ describe('Login test', () => {
     test('Login and logout', async () => {
         expect(page.url()).toBe("https://letcode.in/");
         await locatorUtils.click(headerPage.eleLoginBtn);
-        expect(page.url()).toBe("https://letcode.in/signin");
-        await locatorUtils.fill(loginPage.eleEmailTextField,"aarahman@mailinator.com");
-        await locatorUtils.fill(loginPage.elePasswordTextField,"Letcode@1234");
-        await locatorUtils.click(loginPage.eleLoginBtn);
-        expect(await toastUtils.getToastMessage()).toContain("Welcome Ahamed");
+        await loginPage.doLogin("aarahman@mailinator.com","Letcode@1234","Ahamed");
         expect(page.url()).toBe("https://letcode.in/");
-        await locatorUtils.click(headerPage.eleSignOutBtn);
-        expect(await toastUtils.getToastMessage()).toContain("Bye! See you soon :)");
+        await headerPage.doLogout();
     })
 
     afterAll(async () => {

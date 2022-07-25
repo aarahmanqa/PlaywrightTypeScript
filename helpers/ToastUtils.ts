@@ -8,7 +8,8 @@ export default class ToastUtils {
 
     public async getToastMessage() {
         let selector = "div[role='alertdialog']";
-        this.page.waitForSelector(selector);
-        return this.page.locator(selector).textContent();
+        await this.page.waitForSelector(selector);
+        console.log("await this.page.locator(selector).textContent() = " + await this.page.locator(selector).textContent());
+        return await this.page.locator(selector).textContent();
     }
 }
